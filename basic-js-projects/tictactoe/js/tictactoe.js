@@ -13,11 +13,11 @@ function placeXOrO(squareNumber) {
         //this condition checks who's turn it is.
         if (activePlayer === 'X') {
             //if activePlayer is equal to 'X', the x.png is placed in HTML.
-            select.style.backgroundImage='url("images/x.png")';
+            select.style.backgroundImage='url("images/doge2.png")';
             //active player may only be 'X' or 'O' so, if not 'X' it must be 'O'
         } else {
             //if activePlayer is equal to 'O', the o.png is placed in HTML.
-            select.style.backgroundImage='url("images/o.png")';
+            select.style.backgroundImage='url("images/cat2.jpg")';
         }
         //squareNumber and activePlayer are concatenated together and added to array.
         selectedSquares.push(squareNumber + activePlayer);
@@ -35,7 +35,7 @@ function placeXOrO(squareNumber) {
 
         //this function plays a placement sound.
         //var audio = URL('/media/place.mp3');
-        audio('./media/place.mp3');
+        audio('./media/place2.mp3');
         //this function takes a string parameter of the path you set earlier for placement sound
         
         //this condition checks to see if it is CPU's turn.
@@ -105,7 +105,7 @@ function placeXOrO(squareNumber) {
         //squares are selected the code exceutes.
         else if(selectedSquares.length>= 9) {
             //this function plays the tie game sound.
-            audio('./media/tie.mp3');
+            audio('./media/retie.mp3');
             //this function sets a .3 second timer before the resetGame is called.
             setTimeout(function () { resetGame(); }, 1000)
         }
@@ -129,7 +129,7 @@ function placeXOrO(squareNumber) {
     }
     function audio(audioURL) {
         //we create a new audio object and we pass the path as a parameter.
-        //audio('./media/place.mp3');
+        //audio('./media/place2.mp3');
         let audio = new Audio(audioURL);
         //play method plays our audio sound.
         audio.play();
@@ -187,7 +187,7 @@ function placeXOrO(squareNumber) {
         if (x1<= x2 && y1 >=y2 ) {
             if (x < x2) { x +=10; }
             if (y > y2) { y -=10; }
-            if (x >= x2 && y < y2 ) {CancelAnimationFrame(animationLoop);}
+            if (x >= x2 && y < y2 ) {cancelAnimationFrame(animationLoop);}
         }
     }
 
@@ -205,9 +205,22 @@ function placeXOrO(squareNumber) {
     //this line disallows clicking while the win sound is playing
     disableClick();
     //this line plays the win sounds
-    audio('./media/winGame.mp3');
+    audio('./media/winGame2.mp3');
     //this line calls our main animation loop
     animateLineDrawing();
     //this line waits one second. Then, clears canvas, resets game, and allows clicking again.
     setTimeout(function () { clear(); resetGame(); }, 1000);
+}
+
+//this function resets the game in the event of a tie or a win.
+function resetGame() {
+    //this for loop iterates through each html square element
+    for (let i = 0; i < 9; i++) {
+        //this variable get the html element of i.
+        let square = document.getElementById(String(i))
+        //this removes our elements backgroundImage.
+        square.style.backgroundImage=''
+    }
+    //this resets our array so it is empty and we can start over.
+    selectedSquares=[];
 }
