@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!--linking jQuery to our doc--> 
+    </head>
+
+<script>
+        $(document).ready(function() { //when the document has loaded in completely, do the following
+            $("html").append( //adding a DOM to the document, in the layout specified
+                "<body>\
+                <div id='container'>\
+                <div id='inner'>\
+                <h1>Basic jQuery</h1>\
+                <p id='1'>Paragraph 1</p>\
+                <p id='2'>Paragraph 2</p>\
+                <p id='3'>Paragraph 3</p>\
+                </div>\
+            </div>\
+        </body>"
+    );
+    $("#2").css({"color":"red"}); //changes paragraph two's color to red using the css call
+    $("#3").click(function() { //created function so when paragraph 3 was clicked, element h1 is hidden
+        $('h1').hide();
+    });
+});
+</script>
+</html>
