@@ -1,0 +1,37 @@
+<!DOCTYPE html> <!--creating html doc-->
+<html lang="en"> <!--setting language to english-->
+    <head>
+        <meta charset="utf-8"> <!--setting character set-->
+        <title>Basic AJAX Demo</title> <!--tab title-->
+		<link rel="stylesheet" href="style.css"> <!--linking css file-->
+    </head>
+    <body>
+        <div class="main">
+			<h2>Get The Latest Content:</h2> <!--setting header-->
+			<div class='content' id="content">
+				<input type="button" class="button" value="Get Content" id="btn_content" onclick="getContent();"/> <!--creating interactive button-->
+			</div>
+		<script type="text/javascript"> //inserting internal JS
+			
+            //STEP 1: setup the xml http request object
+            var ajax = new XMLHttpRequest(); //instantiating ajax variable
+
+            //STEP 2: prepare the open ajax request
+            ajax.open('GET', 'content.html'); //inputting instructions on where to get file
+
+            //STEP 3: define the ajax response callback method
+            ajax.onreadystatechange = function() { 
+                if (ajax.readyState == 4) { //if the server has returned the data, run this if statement
+                    document.getElementById('content').innerHTML = ajax.responseText; //get text from content.html and set it as server response
+                }
+            }
+            //STEP 4: send the ajax request for data
+            function getContent() {
+                ajax.send(); //send nothing because this exercise is only receiving
+                document.getElementById('btn_content').style.display = 'none'; //hides the button when the text is returned
+            }
+
+
+		</script>
+    </body>
+</html>
