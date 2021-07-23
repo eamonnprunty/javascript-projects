@@ -42,6 +42,12 @@ function show() {
     html += '</ul>';
     //this displays the task as a list
     document.getElementById('todos').innerHTML = html;
+
+    //this tells the browser how to display the todo array after an item has been removed
+    var buttons = document.getElementsByClassName('remove');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', remove);
+    };
 }
 
 //this displays the inputed task when the 'Add Item' button is clicked
